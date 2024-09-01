@@ -22,11 +22,11 @@ const gameboard = (function createGameboard() {
         }
     }
 
-    function changeField( chosenField, player ) {
-        if (player.name === "playerX") {
+    function changeField( chosenField, playerName ) {
+        if (playerName === "playerX") {
             gameboard[chosenField] = "X"
         }
-        else if (player.name === "playerO") {
+        else if (playerName === "playerO") {
             gameboard[chosenField] = "O"
         }
     }
@@ -38,14 +38,24 @@ const gameboard = (function createGameboard() {
 const playerX = (function createPlayerX() {
     let name = "playerX"
 
+    function getName() {
+        return name;
+    }
 
-    return { name };
+    return { 
+        getName : getName
+    };
 })();
 
 
 const playerO = (function createPlayerO() {
     let name = "playerO"
 
+    function getName() {
+        return name;
+    }
 
-    return { name };
+    return { 
+        getName : getName
+    };
 })();
