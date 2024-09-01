@@ -34,8 +34,17 @@ const gameboard = (function createGameboard() {
     return { displayGameboard, changeField };
 })();
 
+
 const playerX = (function createPlayerX() {
     let name = "playerX"
+
+
+    return { name };
+})();
+
+
+const playerY = (function createPlayerX() {
+    let name = "playerY"
 
 
     return { name };
