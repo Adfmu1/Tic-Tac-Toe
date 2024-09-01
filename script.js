@@ -22,5 +22,14 @@ const gameboard = (function createGameboard() {
         }
     }
 
-    return { displayGameboard };
+    function changeField(chosenField, player) {
+        if (player[name] === "playerX") {
+            gameboard[chosenField] = "X"
+        }
+        else if (player[name] === "playerY") {
+            gameboard[chosenField] = "Y"
+        }
+    }
+
+    return { displayGameboard, changeField };
 })();
