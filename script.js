@@ -2,15 +2,15 @@ console.log("Im working");
 
 const gameboard = (function createGameboard() {
     let gameboard = {
-        1: [""],
-        2: [""],
-        3: [""],
-        4: [""],
-        5: [""],
-        6: [""],
-        7: [""],
-        8: [""],
-        9: [""]
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        8: "",
+        9: ""
     };
 
     function displayGameboard() {
@@ -22,14 +22,21 @@ const gameboard = (function createGameboard() {
         }
     }
 
-    function changeField(chosenField, player) {
-        if (player[name] === "playerX") {
+    function changeField( chosenField, player ) {
+        if (player.name === "playerX") {
             gameboard[chosenField] = "X"
         }
-        else if (player[name] === "playerY") {
-            gameboard[chosenField] = "Y"
+        else if (player.name === "playerY") {
+            gameboard[chosenField] = "O"
         }
     }
 
     return { displayGameboard, changeField };
+})();
+
+const playerX = (function createPlayerX() {
+    let name = "playerX"
+
+
+    return { name };
 })();
