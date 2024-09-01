@@ -26,7 +26,7 @@ const gameboard = (function createGameboard() {
         if (player.name === "playerX") {
             gameboard[chosenField] = "X"
         }
-        else if (player.name === "playerY") {
+        else if (player.name === "playerO") {
             gameboard[chosenField] = "O"
         }
     }
@@ -43,8 +43,8 @@ const playerX = (function createPlayerX() {
 })();
 
 
-const playerY = (function createPlayerX() {
-    let name = "playerY"
+const playerO = (function createPlayerO() {
+    let name = "playerO"
 
 
     return { name };
