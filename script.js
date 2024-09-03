@@ -1,6 +1,6 @@
 console.log("Im working");
 
-const gameboard = (function createGameboard() {
+const gameboard = (() => {
     let gameboard = {
         1: "",
         2: "",
@@ -31,11 +31,11 @@ const gameboard = (function createGameboard() {
         }
     }
 
-    return { displayGameboard, changeField };
+    return { gameboard, displayGameboard, changeField };
 })();
 
 
-const playerX = (function createPlayerX() {
+const playerX = (() => {
     let name = "playerX"
 
     function getName() {
@@ -48,7 +48,7 @@ const playerX = (function createPlayerX() {
 })();
 
 
-const playerO = (function createPlayerO() {
+const playerO = (() => {
     let name = "playerO"
 
     function getName() {
@@ -59,3 +59,4 @@ const playerO = (function createPlayerO() {
         getName : getName
     };
 })();
+
