@@ -1,14 +1,14 @@
 const gameboard = (() => {
     let gameboard = {
         1: "",
-        2: "X",
+        2: "",
         3: "",
-        4: "X",
+        4: "",
         5: "",
         6: "",
-        7: "X",
-        8: "X",
-        9: "X"
+        7: "",
+        8: "",
+        9: ""
     };
 
     function displayGameboard() {
@@ -65,6 +65,8 @@ const playerO = (() => {
 })();
 
 const gameController = (() => {
+    let turn = "O";
+
     function checkForWinner(gameboard) {
         const winConditions = [
                                 [1, 2, 3],
@@ -96,5 +98,13 @@ const gameController = (() => {
         }
     }
 
-    return { checkForWinner }
+    function changeTurn() {
+        turn = turn === "O" ? "X" : "O";
+    }
+
+    function getTurn() {
+        return turn; 
+    }
+
+    return { checkForWinner, changeTurn, getTurn }
 })();
