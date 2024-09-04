@@ -73,6 +73,7 @@ const playerO = (() => {
     };
 })();
 
+
 const gameController = (() => {
     let isGameOn = false;
     let turn = "O";
@@ -85,7 +86,7 @@ const gameController = (() => {
 
         isGameOn = true;
 
-        console.log("PlayerO");
+        console.log("PlayerO turn");
     }
 
     function checkForWinner() {
@@ -110,11 +111,17 @@ const gameController = (() => {
 
             if (checkString === "XXX") {
                 console.log("PlayerX wins");
-                changeGameStatus();
+
+                isGameOn = false;
+
+                startGame();
             }
             else if (checkString === "OOO") {
                 console.log("PlayerO wins");
-                changeGameStatus();
+
+                isGameOn = false;
+
+                startGame();
             }
 
             checkString = "";
