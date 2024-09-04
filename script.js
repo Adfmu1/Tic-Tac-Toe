@@ -24,7 +24,8 @@ const gameboard = (() => {
     }
 
     function changeField( chosenField ) {
-        const turn = gameController.getTurn();
+        if (gameController.getIsGameOn()) {
+            const turn = gameController.getTurn();
 
         if (turn === "X") {
             gameboard[chosenField] = "X";
@@ -36,9 +37,14 @@ const gameboard = (() => {
         displayGameboard();
 
         gameController.checkForWinner(gameboard);
+        
+        gameController.changeTurn();
+        }
+
     }
 
-    return { gameboard, displayGameboard, changeField };
+    return { gameboard, changeField };
+        
 })();
 
 
@@ -68,9 +74,21 @@ const playerO = (() => {
 })();
 
 const gameController = (() => {
+    let isGameOn = false;
     let turn = "O";
+    let start;
 
-    function checkForWinner(gameboard) {
+    function startGame() {
+        while (start !== 'start') {
+            start = prompt("type 'start' to start a game");
+        }
+
+        isGameOn = true;
+
+        console.log("PlayerO");
+    }
+
+    function checkForWinner() {
         const winConditions = [
                                 [1, 2, 3],
                                 [1, 4, 7],
@@ -87,14 +105,16 @@ const gameController = (() => {
         for (let i = 0; i < 8; i++) {
             // check for each index in winConditions
             for (let j = 0; j < 3; j++) {
-                checkString += gameboard[winConditions[i][j]];
+                checkString += gameboard.gameboard[winConditions[i][j]];
             }
 
             if (checkString === "XXX") {
                 console.log("PlayerX wins");
+                changeGameStatus();
             }
             else if (checkString === "OOO") {
                 console.log("PlayerO wins");
+                changeGameStatus();
             }
 
             checkString = "";
@@ -103,11 +123,18 @@ const gameController = (() => {
 
     function changeTurn() {
         turn = turn === "O" ? "X" : "O";
+        console.log(`Player${turn} turn`);
     }
 
     function getTurn() {
         return turn; 
     }
 
-    return { checkForWinner, changeTurn, getTurn }
+    function getIsGameOn() {
+        return isGameOn;
+    }
+
+    return { checkForWinner, changeTurn, getTurn, getIsGameOn, startGame }
 })();
+
+gameController.startGame();
