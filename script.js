@@ -21,16 +21,19 @@ const gameboard = (() => {
             }
         }
         
-        gameController.checkForWinner(gameboard);
     }
 
-    function changeField( chosenField, playerName ) {
-        if (playerName === "playerX") {
-            gameboard[chosenField] = "X"
+    function changeField( chosenField ) {
+        const turn = gameController.getTurn();
+
+        if (turn === "X") {
+            gameboard[chosenField] = "X";
         }
-        else if (playerName === "playerO") {
-            gameboard[chosenField] = "O"
+        else if (turn === "O") {
+            gameboard[chosenField] = "O";
         }
+
+        displayGameboard();
 
         gameController.checkForWinner(gameboard);
     }
@@ -40,7 +43,7 @@ const gameboard = (() => {
 
 
 const playerX = (() => {
-    let name = "playerX"
+    let name = "playerX";
 
     function getName() {
         return name;
@@ -53,7 +56,7 @@ const playerX = (() => {
 
 
 const playerO = (() => {
-    let name = "playerO"
+    let name = "playerO";
 
     function getName() {
         return name;
@@ -72,7 +75,7 @@ const gameController = (() => {
                                 [1, 2, 3],
                                 [1, 4, 7],
                                 [1, 5, 9],
-                                [2, 5 ,],
+                                [2, 5 ,8],
                                 [3, 6, 9],
                                 [3, 5, 7],
                                 [4, 5, 6],
