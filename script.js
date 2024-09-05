@@ -24,23 +24,27 @@ const gameboard = (() => {
     }
 
     function changeField( chosenField ) {
-        if (gameController.getIsGameOn()) {
-            const turn = gameController.getTurn();
-
-        if (turn === "X") {
-            gameboard[chosenField] = "X";
+        if (chosenField < 1 || chosenField > 9) {
+            console.log("Pick numbers from 1 to 9");
         }
-        else if (turn === "O") {
-            gameboard[chosenField] = "O";
+        else {
+            if (gameController.getIsGameOn()) {
+                const turn = gameController.getTurn();
+    
+            if (turn === "X") {
+                gameboard[chosenField] = "X";
+            }
+            else if (turn === "O") {
+                gameboard[chosenField] = "O";
+            }
+    
+            displayGameboard();
+    
+            gameController.checkForWinner(gameboard);
+            
+            gameController.changeTurn();
+            }
         }
-
-        displayGameboard();
-
-        gameController.checkForWinner(gameboard);
-        
-        gameController.changeTurn();
-        }
-
     }
 
     return { gameboard, changeField };
