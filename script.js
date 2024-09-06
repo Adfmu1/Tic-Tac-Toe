@@ -2,10 +2,10 @@ const gameboard = (() => {
     let gameboard = {
         1: "",
         2: "",
-        3: "",
+        3: "X",
         4: "",
         5: "",
-        6: "",
+        6: "X",
         7: "",
         8: "",
         9: ""
@@ -20,7 +20,12 @@ const gameboard = (() => {
                 row = "";
             }
         }
-        
+    }
+
+    function clearGameboard() {
+        for (let i = 1; i < 10; i++) {
+            gameboard[i] = ""
+        }
     }
 
     function changeField( chosenField ) {
@@ -47,7 +52,7 @@ const gameboard = (() => {
         }
     }
 
-    return { gameboard, changeField };
+    return { gameboard, changeField, clearGameboard };
         
 })();
 
