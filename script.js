@@ -2,10 +2,10 @@ const gameboard = (() => {
     let gameboard = {
         1: "",
         2: "",
-        3: "X",
+        3: "",
         4: "",
         5: "",
-        6: "X",
+        6: "",
         7: "",
         8: "",
         9: ""
@@ -36,18 +36,18 @@ const gameboard = (() => {
             if (gameController.getIsGameOn()) {
                 const turn = gameController.getTurn();
     
-            if (turn === "X") {
-                gameboard[chosenField] = "X";
-            }
-            else if (turn === "O") {
-                gameboard[chosenField] = "O";
-            }
-    
-            displayGameboard();
-    
-            gameController.checkForWinner(gameboard);
-            
-            gameController.changeTurn();
+                if (turn === "X") {
+                    gameboard[chosenField] = "X";
+                }
+                else if (turn === "O") {
+                    gameboard[chosenField] = "O";
+                }
+        
+                displayGameboard();
+        
+                if (!gameController.checkForWinner(gameboard)) {
+                    gameController.changeTurn();
+                }
             }
         }
     }
@@ -93,6 +93,8 @@ const gameController = (() => {
             start = prompt("type 'start' to start a game");
         }
 
+        start = "";
+
         isGameOn = true;
 
         console.log("PlayerO turn");
@@ -121,16 +123,24 @@ const gameController = (() => {
             if (checkString === "XXX") {
                 console.log("PlayerX wins");
 
+                gameboard.clearGameboard();
+
                 isGameOn = false;
 
                 startGame();
+
+                return true;
             }
             else if (checkString === "OOO") {
                 console.log("PlayerO wins");
 
+                gameboard.clearGameboard();
+
                 isGameOn = false;
 
                 startGame();
+
+                return true;
             }
 
             checkString = "";
