@@ -12,4 +12,14 @@ h1 {
 #gameboard {
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    gap: 5px;
+    background-color: black;
+}
+
+.gameboard-tile {
+    min-width: 5vh;
+    min-height: 5vh;
+    align-content: center;
+    text-align: center;
+    background-color: white;
 }
