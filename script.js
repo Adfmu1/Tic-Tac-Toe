@@ -1,4 +1,13 @@
 const gameboard = (() => {
+    const gameboardTiles = document.getElementsByClassName("gameboard-tile");
+
+    for (let i = 0; i < gameboardTiles.length; i++) {
+        gameboardTiles[i].addEventListener("click", () => {
+            console.log(`Its me tile number ${i+1}`);
+        })        
+    }
+
+
     let gameboard = {
         1: "",
         2: "",
@@ -52,7 +61,7 @@ const gameboard = (() => {
         }
     }
 
-    return { gameboard, changeField, clearGameboard };
+    return { gameboard, changeField, clearGameboard, gameboardTiles, displayGameboard };
         
 })();
 
