@@ -7,32 +7,9 @@ const gameboard = (() => {
         })
     }
 
-    let gameboard = {
-        1: "",
-        2: "",
-        3: "",
-        4: "",
-        5: "",
-        6: "",
-        7: "",
-        8: "",
-        9: ""
-    };
-
-    function displayGameboard() {
-        let row = "";
-        for (let key in gameboard) {
-            row += gameboard[key];
-            if (key % 3 === 0) {
-                console.log(row);
-                row = "";
-            }
-        }
-    }
-
     function clearGameboard() {
-        for (let i = 1; i < 10; i++) {
-            gameboard[i] = ""
+        for (let i = 0; i < 9; i++) {
+            gameboardTiles[i].textContent = "";
         }
     }
 
@@ -45,24 +22,20 @@ const gameboard = (() => {
                 const turn = gameController.getTurn();
     
                 if (turn === "X") {
-                    gameboard[chosenField] = "X";
                     gameboardTiles[chosenField - 1].textContent = "X";
                 }
                 else if (turn === "O") {
-                    gameboard[chosenField] = "O";
                     gameboardTiles[chosenField - 1].textContent = "O";
                 }
         
-                displayGameboard();
-        
-                if (!gameController.checkForWinner(gameboard)) {
+                if (!gameController.checkForWinner(gameboardTiles)) {
                     gameController.changeTurn();
                 }
             }
         }
     }
 
-    return { gameboard, changeField, clearGameboard, displayGameboard };
+    return { changeField, clearGameboard, gameboardTiles };
         
 })();
 
@@ -127,7 +100,7 @@ const gameController = (() => {
         for (let i = 0; i < 8; i++) {
             // check for each index in winConditions
             for (let j = 0; j < 3; j++) {
-                checkString += gameboard.gameboard[winConditions[i][j]];
+                checkString += gameboard.gameboardTiles[winConditions[i][j] - 1].textContent;
             }
 
             if (checkString === "XXX") {
