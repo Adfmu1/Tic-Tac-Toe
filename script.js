@@ -3,7 +3,21 @@ const gameboard = (() => {
 
     for (let i = 0; i < gameboardTiles.length; i++) {
         gameboardTiles[i].addEventListener("click", () => {
-            changeField( i + 1 );
+            if (gameController.getIsGameOn()) {
+                const turn = gameController.getTurn();
+    
+                if (turn === "X") {
+                    gameboardTiles[i].textContent = "X";
+                }
+                else if (turn === "O") {
+                    gameboardTiles[i].textContent = "O";
+                }
+
+                if (!gameController.checkForWinner(gameboardTiles)) {
+                    gameController.changeTurn();
+                
+                }
+            }
         })
     }
 
@@ -13,29 +27,7 @@ const gameboard = (() => {
         }
     }
 
-    function changeField( chosenField ) {
-        if (chosenField < 1 || chosenField > 9) {
-            console.log("Pick numbers from 1 to 9");
-        }
-        else {
-            if (gameController.getIsGameOn()) {
-                const turn = gameController.getTurn();
-    
-                if (turn === "X") {
-                    gameboardTiles[chosenField - 1].textContent = "X";
-                }
-                else if (turn === "O") {
-                    gameboardTiles[chosenField - 1].textContent = "O";
-                }
-        
-                if (!gameController.checkForWinner(gameboardTiles)) {
-                    gameController.changeTurn();
-                }
-            }
-        }
-    }
-
-    return { changeField, clearGameboard, gameboardTiles };
+    return { clearGameboard, gameboardTiles };
         
 })();
 
