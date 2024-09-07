@@ -3,10 +3,9 @@ const gameboard = (() => {
 
     for (let i = 0; i < gameboardTiles.length; i++) {
         gameboardTiles[i].addEventListener("click", () => {
-            console.log(`Its me tile number ${i+1}`);
-        })        
+            changeField( i + 1 );
+        })
     }
-
 
     let gameboard = {
         1: "",
@@ -47,9 +46,11 @@ const gameboard = (() => {
     
                 if (turn === "X") {
                     gameboard[chosenField] = "X";
+                    gameboardTiles[chosenField - 1].textContent = "X";
                 }
                 else if (turn === "O") {
                     gameboard[chosenField] = "O";
+                    gameboardTiles[chosenField - 1].textContent = "O";
                 }
         
                 displayGameboard();
@@ -61,7 +62,7 @@ const gameboard = (() => {
         }
     }
 
-    return { gameboard, changeField, clearGameboard, gameboardTiles, displayGameboard };
+    return { gameboard, changeField, clearGameboard, displayGameboard };
         
 })();
 
