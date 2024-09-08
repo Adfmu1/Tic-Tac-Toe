@@ -4,18 +4,23 @@ const gameboard = (() => {
     for (let i = 0; i < gameboardTiles.length; i++) {
         gameboardTiles[i].addEventListener("click", () => {
             if (gameController.getIsGameOn()) {
-                const turn = gameController.getTurn();
+                if (gameboardTiles[i].textContent != "") {
+                    alert("Choose empty tile");
+                }
+                else {
+                    const turn = gameController.getTurn();
     
-                if (turn === "X") {
-                    gameboardTiles[i].textContent = "X";
-                }
-                else if (turn === "O") {
-                    gameboardTiles[i].textContent = "O";
-                }
+                    if (turn === "X") {
+                        gameboardTiles[i].textContent = "X";
+                    }
+                    else if (turn === "O") {
+                        gameboardTiles[i].textContent = "O";
+                    }
 
-                if (!gameController.checkForWinner(gameboardTiles)) {
-                    gameController.changeTurn();
-                
+                    if (!gameController.checkForWinner(gameboardTiles)) {
+                        gameController.changeTurn();
+                    
+                    }
                 }
             }
         })
@@ -52,9 +57,7 @@ const playerO = (() => {
         return name;
     }
 
-    return { 
-        getName : getName
-    };
+    return { getName };
 })();
 
 
