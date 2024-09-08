@@ -26,13 +26,23 @@ const gameboard = (() => {
         })
     }
 
+    function getAllTilesLen() {
+        let allTiles = "";
+
+        for (let i = 0; i < gameboardTiles.length; i++) {
+            allTiles += gameboardTiles[i].textContent;
+        }
+
+        return allTiles.length;
+    }
+
     function clearGameboard() {
         for (let i = 0; i < 9; i++) {
             gameboardTiles[i].textContent = "";
         }
     }
 
-    return { clearGameboard, gameboardTiles };
+    return { clearGameboard, gameboardTiles, getAllTilesLen };
         
 })();
 
@@ -99,7 +109,7 @@ const gameController = (() => {
             }
 
             if (checkString === "XXX") {
-                console.log("PlayerX wins");
+                alert("PlayerX wins");
 
                 gameboard.clearGameboard();
 
@@ -110,7 +120,7 @@ const gameController = (() => {
                 return true;
             }
             else if (checkString === "OOO") {
-                console.log("PlayerO wins");
+                alert("PlayerO wins");
 
                 gameboard.clearGameboard();
 
@@ -120,6 +130,17 @@ const gameController = (() => {
 
                 return true;
             }
+            else if (gameboard.getAllTilesLen() === 9) {
+                alert("Draw!");
+
+                gameboard.clearGameboard();
+
+                isGameOn = false;
+
+                startGame();
+
+                return true;
+            } 
 
             checkString = "";
         }
