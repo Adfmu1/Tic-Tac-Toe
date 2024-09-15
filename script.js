@@ -11,24 +11,20 @@ const gameboard = (() => {
     for (let i = 0; i < gameboardTiles.length; i++) {
         gameboardTiles[i].addEventListener("click", () => {
             if (gameController.getIsGameOn()) {
-                if (gameboardTiles[i].textContent != "") {
-                    alert("Choose empty tile");
-                }
-                else {
-                    const turn = gameController.getTurn();
-    
-                    if (turn === "X") {
-                        gameboardTiles[i].textContent = "X";
-                    }
-                    else if (turn === "O") {
-                        gameboardTiles[i].textContent = "O";
-                    }
+                const turn = gameController.getTurn();
 
-                    if (!gameController.checkForWinner(gameboardTiles)) {
-                        gameController.changeTurn();
-                    
-                    }
+                if (turn === "X") {
+                    gameboardTiles[i].textContent = "X";
                 }
+                else if (turn === "O") {
+                    gameboardTiles[i].textContent = "O";
+                }
+
+                if (!gameController.checkForWinner(gameboardTiles)) {
+                    gameController.changeTurn();
+                
+                }
+                
             }
         })
     }
@@ -154,7 +150,6 @@ const gameController = (() => {
 
     function changeTurn() {
         turn = turn === "O" ? "X" : "O";
-        console.log(`Player${turn} turn`);
     }
 
     function getTurn() {
