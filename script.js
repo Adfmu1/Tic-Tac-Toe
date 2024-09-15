@@ -74,15 +74,16 @@ const playerO = (() => {
 const gameController = (() => {
     let isGameOn = false;
     let turn = "O";
-    let start;
+    const startBtn = document.querySelector("#start-btn");
+    const modalDisplay = document.querySelector("#start-game");
+
+    startBtn.addEventListener('click', () => {
+        modalDisplay.style.visibility = "hidden";
+
+        startGame();
+    });
 
     function startGame() {
-        while (start !== 'start') {
-            start = prompt("type 'start' to start a game");
-        }
-
-        start = "";
-
         isGameOn = true;
 
         console.log("PlayerO turn");
@@ -115,7 +116,7 @@ const gameController = (() => {
 
                 isGameOn = false;
 
-                startGame();
+                modalDisplay.style.visibility = "visible";
 
                 return true;
             }
@@ -126,7 +127,7 @@ const gameController = (() => {
 
                 isGameOn = false;
 
-                startGame();
+                modalDisplay.style.visibility = "visible";
 
                 return true;
             }
@@ -137,7 +138,7 @@ const gameController = (() => {
 
                 isGameOn = false;
 
-                startGame();
+                modalDisplay.style.visibility = "visible";
 
                 return true;
             } 
