@@ -1,5 +1,12 @@
 const gameboard = (() => {
     const gameboardTiles = document.getElementsByClassName("gameboard-tile");
+    const resetButton = document.querySelector("#reset-btn");
+
+    resetButton.addEventListener('click', () => {
+        clearGameboard();
+
+        gameController.resetTheGame();
+    });
 
     for (let i = 0; i < gameboardTiles.length; i++) {
         gameboardTiles[i].addEventListener("click", () => {
@@ -78,15 +85,13 @@ const gameController = (() => {
     const modalDisplay = document.querySelector("#start-game");
 
     startBtn.addEventListener('click', () => {
-        modalDisplay.style.visibility = "hidden";
-
         startGame();
     });
 
     function startGame() {
         isGameOn = true;
 
-        console.log("PlayerO turn");
+        modalDisplay.style.visibility = "hidden";
     }
 
     function checkForWinner() {
@@ -114,7 +119,7 @@ const gameController = (() => {
 
                 gameboard.clearGameboard();
 
-                isGameOn = false;
+                resetTheGame();
 
                 modalDisplay.style.visibility = "visible";
 
@@ -125,7 +130,7 @@ const gameController = (() => {
 
                 gameboard.clearGameboard();
 
-                isGameOn = false;
+                resetTheGame();
 
                 modalDisplay.style.visibility = "visible";
 
@@ -136,7 +141,7 @@ const gameController = (() => {
 
                 gameboard.clearGameboard();
 
-                isGameOn = false;
+                resetTheGame();
 
                 modalDisplay.style.visibility = "visible";
 
@@ -160,7 +165,11 @@ const gameController = (() => {
         return isGameOn;
     }
 
-    return { checkForWinner, changeTurn, getTurn, getIsGameOn, startGame }
-})();
+    function resetTheGame() {
+        isGameOn = false;
 
-gameController.startGame();
+        modalDisplay.style.visibility = "visible";
+    }
+
+    return { checkForWinner, changeTurn, getTurn, getIsGameOn, startGame, resetTheGame }
+})();
