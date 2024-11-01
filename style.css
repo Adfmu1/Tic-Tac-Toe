@@ -2,11 +2,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 5vh;
 }
 
-h1 {
-    text-align: center;
+body > * {
+    margin: 0;
 }
 
 #game-screen {
@@ -14,41 +14,36 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 10vw;
+
+    #gameboard {
+        display: grid;
+        grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+        gap: 5px;
+        background-color: black;
+    }
+    
+    .gameboard-tile {
+        min-width: 10vh;
+        min-height: 10vh;
+        align-content: center;
+        text-align: center;
+        background-color: white;
+    }
+
+    .player {
+        font-size: 2cap;
+    }
+
+    #playerO {
+        color: chocolate;
+    }
+
+    #playerX {
+        color: rgb(30, 72, 210);
+    }
 }
 
-#gameboard {
-    display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    gap: 5px;
-    background-color: black;
-}
-
-.gameboard-tile {
-    min-width: 5vh;
-    min-height: 5vh;
-    align-content: center;
-    text-align: center;
-    background-color: white;
-}
-
-#start-game {
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#modal-content {
-    background-color: beige;
-    padding: 5vh 5vw;
-    border-radius: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#start-reset-button {
+    padding: 2vh 2vw;
+    font-size: 2vh;
 }
