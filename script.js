@@ -81,15 +81,18 @@ const gameController = (() => {
             isGameOn = false;
 
             gameboard.clearGameboard();
+
+            gameResultScreen.textContent = "Press Start button to start a game!";
         }
         else {
             isGameOn = true;
             turn = "O"
 
             gameboard.clearGameboard();
+
+            gameResultScreen.textContent = `${getTurn() === "O" ? playerO.getName() : playerX.getName()} turn`;
         }
 
-        gameResultScreen.textContent = `${getTurn() === "O" ? playerO.getName() : playerX.getName()} turn`;
     }
 
     function checkForWinner() {
@@ -141,7 +144,6 @@ const gameController = (() => {
     function changeTurn() {
         turn = getTurn() === "O" ? "X" : "O";
         gameResultScreen.textContent = `${getTurn() === "O" ? playerO.getName() : playerX.getName()} turn`;
-
     }
 
     function getTurn() {
