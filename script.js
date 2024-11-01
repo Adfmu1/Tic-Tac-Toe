@@ -54,9 +54,13 @@ const playerX = (() => {
         return name;
     }
 
-    return { 
-        getName : getName
-    };
+    function setName(newName) {
+        name = newName;
+
+        document.querySelector("#playerX").textContent = newName.trim().substring(0, 13);
+    }
+
+    return { getName, setName };
 })();
 
 
@@ -67,7 +71,13 @@ const playerO = (() => {
         return name;
     }
 
-    return { getName };
+    function setName(newName) {
+        name = newName;
+
+        document.querySelector("#playerO").textContent = newName.trim().substring(0, 13);
+    }
+
+    return { getName, setName };
 })();
 
 
@@ -160,3 +170,19 @@ const gameController = (() => {
 const startResetButton = document.querySelector("#start-reset-button") 
 
 startResetButton.addEventListener('click', () => gameController.startGame());
+
+const changeNamePlayerO = document.querySelector("#playerO");
+
+changeNamePlayerO.addEventListener('click', () => {
+    const newName = prompt("Enter a new name for this player! (14 characters)");
+
+    playerO.setName(newName);
+})
+
+const changeNamePlayerX = document.querySelector("#playerX");
+
+changeNamePlayerX.addEventListener('click', () => {
+    const newName = prompt("Enter a new name for this player! (14 characters)");
+
+    playerX.setName(newName);
+})
